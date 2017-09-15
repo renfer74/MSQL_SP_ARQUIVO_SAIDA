@@ -30,9 +30,8 @@ GO
 					[DB5693_SIACI].[MOVIMENTO].[ACITB001_PEDIDO_ATIVO] 
 					[DB5693_SIACI].[Parametro].[ACITBC01_CARTEIRA_ORIGEM_REGISTRO]  
 					[DB5693_SIACI].[Siger].[ACITB001_PAGAMENTO] 
-
+          TbGenacMovimentos
 =======================================================================================
-
 
 
 */
@@ -116,10 +115,12 @@ SELECT
    , PG.VR_JUROS_REMUNERATORIO                                       as JUROS_REM_ANT_COMANDO 
    , TP.VR_PRESTACAO_LIQUIDA_ATUAL                                   as PREST_APOS_COMANDO 
    , TP.NU_VOTO                                                      as CODIGO_VOTO
-   , TP.VR_PAGAMENTO_SEGURO                                          as SOMATORIO_SEGURO
+   , TP.VR_PAGAMENTO_SEGURO                                          as SOMATORIO_SEGUROS
+   --(B.VR_SEGURO_CREDITO+B.VR_SEGURO_DFI+B.VR_SEGURO_MIP)  AS SOMAT_SEGUROS,-- VERIFICAR
    , TP.VR_PAGAMENTO_JUROS                                           as SOMATORIO_JUROS
    , TP.VR_PAGAMENTO_AMORTIZACAO                                     as SOMATORIO_AMORTIZACAO
    , TP.VR_PAGAMENTO_TOTAL_TAXA                                      as SOMATORIO_TAXAS_PREST
+   --   (B.VR_TAXA_ARRENDAMENTO_MENSAL+B.VR_TAXA_OCIOSIDADE_MENSAL+B.VR_TAXA_OCUPACAO_MENSAL+B.VR_TAXA1+B.VR_TAXA2+B.VR_TAXA3+B.VR_TAXA4)  AS SOMAT_TAXAS_PREST, --- VERIFICAR
    , TP.VR_TOTAL_TAXA_A_VISTA_TP22                                   as SOMATORIO_TAXA_A_VISTA_TP22
    , TP.VR_TOTAL_DIFERENCA_LIQUIDACAO_TP23                           as SOMATORIO_DIF_LIQ_TP23
    , TP.VR_DIVIDA_TOTAL_ANTERIOR_PEDIDO                              as TOTAL_DIVIDA
@@ -134,7 +135,7 @@ SELECT
    , TP.VR_INVESTIMENTO                                              as VALOR_INVESTIMENTO
    , TP.VR_CONTRAPARTIDA                                             as VALOR_CONTRAPARTIDA_GARANTIA
    , TP.NU_TIPO_GARANTIA                                             as TIPO_GARANTIA
-   , TP.NU_PRODUTO                                                   as CODIGO_PRODUTO
+   , TP.NU_PRODUTO                                                   as COD_PRODUTO
    , TP.VR_APORTE_CONSTRUTORA                                        as VALOR_APORTE_CONSTRUTORA
    , TP.VR_DESCONTO_RESOLUCAO_460                                    as VALOR_DESCONTO_460
    , TP.NU_SISTEMA_FINANCEIRO                                        as CODIGO_SITEMA_FINANCEIRO
